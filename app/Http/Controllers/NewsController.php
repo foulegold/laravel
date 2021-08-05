@@ -19,7 +19,7 @@ class NewsController extends Controller
 
     public function currentCategory(int $id)
     {
-        return "All news by categorya №{$id}";
+        return "All news by category №{$id}";
     }
 
     public function show(int $id)
