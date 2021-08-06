@@ -9,7 +9,7 @@ class NewsController extends Controller
 {
     public function index()
     {
-        return 'All news';
+        return view('news.index', ['newsList' => $this->newsList]);
     }
 
     public function categories()
@@ -24,6 +24,6 @@ class NewsController extends Controller
 
     public function show(int $id)
     {
-        return "News №{$id}";
+        return view('news.article', ['news' => $this->newsList[$id]]);
     }
 }
