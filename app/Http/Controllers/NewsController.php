@@ -2,9 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use phpDocumentor\Reflection\Types\Integer;
-
 class NewsController extends Controller
 {
     public function index()

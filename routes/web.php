@@ -22,7 +22,7 @@ Route::group(['prefix' => 'news'], function () {
     Route::get('/categories', [NewsController::class, 'categories'])
         ->name('news.categories');
     Route::get('/categories/{id}', [NewsController::class, 'currentCategory'])
-        ->name('news.currentCategory');
+        ->name('news.current-category');
     Route::get('/show/{id}', [NewsController::class, 'show'])
         ->name('news.show');
 });
@@ -30,4 +30,8 @@ Route::group(['prefix' => 'news'], function () {
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/', [AdminController::class, 'index'])
         ->name('admin');
+    Route::get('/create-news', [AdminController::class, 'createNews'])
+        ->name('admin.create-news');
+    Route::post('/create-news', [AdminController::class, 'createNews'])
+        ->name('admin.create-news');
 });
