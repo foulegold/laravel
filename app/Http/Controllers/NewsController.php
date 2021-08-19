@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\News;
+
 class NewsController extends Controller
 {
     public function index()
     {
-        return view('news.index', ['newsList' => $this->newsList]);
+        $newsModel = new News();
+        dd($newsModel->getNews());
+        return view('news.index', ['newsList' => $newsModel->getNews()]);
     }
 
     public function categories()
@@ -21,6 +25,7 @@ class NewsController extends Controller
 
     public function show(int $id)
     {
-        return view('news.article', ['news' => $this->newsList[$id]]);
+        $newsModel = new News();
+        return view('news.article', ['news' => $newsModel->getNewsById($id)]);
     }
 }

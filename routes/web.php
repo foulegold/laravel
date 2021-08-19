@@ -30,8 +30,6 @@ Route::group(['prefix' => 'news'], function () {
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/', [AdminController::class, 'index'])
         ->name('admin');
-    Route::get('/create-news', [AdminController::class, 'createNews'])
-        ->name('admin.create-news');
-    Route::post('/create-news', [AdminController::class, 'createNews'])
+    Route::match(['get', 'post'], '/create-news', [AdminController::class, 'createNews'])
         ->name('admin.create-news');
 });
