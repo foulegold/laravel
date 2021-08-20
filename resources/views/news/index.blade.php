@@ -6,7 +6,7 @@
             <div class="col-md-10 col-lg-8 col-xl-7">
                 @forelse($newsList as $news)
                 <div class="post-preview">
-                    <a href="{{ route('news.show', ['id' => $news->id]) }}">
+                    <a href="{{ route('news.show', ['news' => $news->id]) }}">
                         <h2 class="post-title">{{ $news->title }}</h2>
                         <h3 class="post-subtitle">{{ $news->description }}</h3>
                     </a>
@@ -14,6 +14,7 @@
                 <hr class="my-4" />
                 @empty
                 @endforelse
+                {{ $newsList->links() }}
             </div>
         </div>
     </div>

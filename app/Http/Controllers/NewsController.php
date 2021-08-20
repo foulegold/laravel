@@ -8,9 +8,7 @@ class NewsController extends Controller
 {
     public function index()
     {
-        $newsModel = new News();
-        dd($newsModel->getNews());
-        return view('news.index', ['newsList' => $newsModel->getNews()]);
+        return view('news.index', ['newsList' => News::query()->orderBy('id', 'desc')->paginate(config('pagination.main.news'))]);
     }
 
     public function categories()
@@ -23,9 +21,8 @@ class NewsController extends Controller
         return "All news by category №{$id}";
     }
 
-    public function show(int $id)
+    public function show(News $news)
     {
-        $newsModel = new News();
-        return view('news.article', ['news' => $newsModel->getNewsById($id)]);
+        return view('news.article', ['news' => $news]);
     }
 }
