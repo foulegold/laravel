@@ -13,6 +13,18 @@
             <label for="description" class="form-label">Description</label>
             <input type="text" class="form-control" id="description" name="description" placeholder="description" value="{{ old('description') }}">
         </div>
+        <div class="mb-3">
+            <label for="category_id" class="form-label">Category</label>
+            <select class="form-control" id="category_id" name="category_id">
+                <option value="0">Выбрать</option>
+                @foreach($categories as $category)
+                    <option value="{{ $category->id }}"
+                            @if( old('category_id') == $category->id ) selected @endif>
+                        {{ $category->title }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
         <button type="submit" class="btn btn-primary">Save</button>
     </form>
 @endsection

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\News;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -16,14 +18,17 @@ class AdminController extends Controller
         if ($request->isMethod('post')) {
             $request->flash();
 
-            $title = $request->input('title');
-            $description = $request->input('description');
-            if ($title == '') {
-                return redirect()->route('admin.create-news');
+            $request->validate([
+                'title' => ['required', 'string'],
+            ]);
+
+            $news = News::create($request->only(['title', 'description', 'category_id']));
+            if (!$news) {
+                return back()->withInput();
             }
 
             return redirect()->route('admin');
         }
-        return view('admin.create-news');
+        return view('admin.create-news', ['categories' => Category::all()]);
     }
 }

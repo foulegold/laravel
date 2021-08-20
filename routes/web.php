@@ -23,7 +23,7 @@ Route::group(['prefix' => 'news'], function () {
         ->name('news.categories');
     Route::get('/categories/{id}', [NewsController::class, 'currentCategory'])
         ->name('news.current-category');
-    Route::get('/show/{id}', [NewsController::class, 'show'])
+    Route::get('/show/{news}', [NewsController::class, 'show'])
         ->name('news.show');
 });
 
